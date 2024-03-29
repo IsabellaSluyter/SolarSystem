@@ -24,7 +24,7 @@ class SolarSystemBody(turtle.Turtle):
 
 class Sun(SolarSystemBody):
   def __init__(self, solar_system, mass, position=(0, 0), velocity=(0, 0)):
-        super().__init__(solar_aystem, mass, position, velocity)
+        super().__init__(solar_system, mass, position, velocity)
         self.color("yellow")
 
 class Planet(SolarSystemBody):
