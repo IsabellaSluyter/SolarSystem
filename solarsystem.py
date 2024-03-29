@@ -1,32 +1,30 @@
-#solarsystem.py
-
 import math
 import turtle
 
 class SolarSystemBody(turtle.Turtle):
-  minDisplaySize = 20
-  displayLogBase = 1.1
+  min_display_size = 20
+  display_log_base = 1.1
   
-  def __init__(self, solarSystem, mass, position=(0,0), velocity=(0,0)):
+  def __init__(self, solar_system, mass, position=(0,0), velocity=(0,0)):
     super().__init__()
     self.mass = mass
     self.setposition(position)
     self.velocity = velocity
-    self.displaySize = max(math.log(self.mass, self.displayLogBase), self.minDisplaySize)
+    self.display_size = max(math.log(self.mass, self.display_log_base), self.min_display_size)
 
     #removes lines
     self.penup()
     #hides object that draws
     self.hideturtle()
 
-    solarSystem.addBody(self)
+    solar_system.add_body(self)
 
   def draw(self):
-    self.dot(self.displaySize)
+    self.dot(self.display_size)
 
 class Sun(SolarSystemBody):
-  def __init__(self, solarSystem, mass, position=(0, 0), velocity=(0, 0)):
-        super().__init__(solarSystem, mass, position, velocity)
+  def __init__(self, solar_system, mass, position=(0, 0), velocity=(0, 0)):
+        super().__init__(solar_aystem, mass, position, velocity)
         self.color("yellow")
 
 class Planet(SolarSystemBody):
@@ -34,17 +32,17 @@ class Planet(SolarSystemBody):
 
 class SolarSystem:
   def __init__(self, width, height):
-    self.solarSystem = turtle.Screen()
-    self.solarSystem.tracer(0)
-    self.solarSystem.setup(width, height)
-    self.solarSystem.bgcolor("black")
+    self.solar_system = turtle.Screen()
+    self.solar_system.tracer(0)
+    self.solar_system.setup(width, height)
+    self.solar_system.bgcolor("black")
 
     #stores list of bodies present
     self.bodies = [0]
     
-  def addBody(self, body):
+  def add_body(self, body):
     self.bodies.append(body)
 
-  def removeBody(self, body):
+  def remove_body(self, body):
     self.bodies.remove(body)
 
