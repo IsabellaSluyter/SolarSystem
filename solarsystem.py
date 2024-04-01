@@ -1,6 +1,7 @@
 import math
 import turtle
 
+# Solar System Bodies
 class SolarSystemBody(turtle.Turtle):
   min_display_size = 20
   display_log_base = 1.1
@@ -20,7 +21,12 @@ class SolarSystemBody(turtle.Turtle):
     solar_system.add_body(self)
 
   def draw(self):
+    self.clear()
     self.dot(self.display_size)
+
+  def move(self):
+    self.setx(self.xcor() + self.velocity[0])
+    self.sety(self.ycor() + self.velocity[1])
 
 class Sun(SolarSystemBody):
   def __init__(self, solar_system, mass, position=(0, 0), velocity=(0, 0)):
@@ -30,6 +36,7 @@ class Sun(SolarSystemBody):
 class Planet(SolarSystemBody):
   ...
 
+# Solar System
 class SolarSystem:
   def __init__(self, width, height):
     self.solar_system = turtle.Screen()
@@ -45,4 +52,10 @@ class SolarSystem:
 
   def remove_body(self, body):
     self.bodies.remove(body)
+
+  def update_all(self):
+      for body in self.bodies:
+        body.move()
+        body.draw()
+      self.solar_system.update()
 
