@@ -45,7 +45,7 @@ class SolarSystem:
     self.solar_system.bgcolor("black")
 
     #stores list of bodies present
-    self.bodies = [0]
+    self.bodies = []
     
   def add_body(self, body):
     self.bodies.append(body)
