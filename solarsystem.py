@@ -1,3 +1,4 @@
+import itertools
 import math
 import turtle
 
@@ -34,7 +35,11 @@ class Sun(SolarSystemBody):
         self.color("yellow")
 
 class Planet(SolarSystemBody):
-  ...
+  colors = itertools.cycle(["red", "green", "blue"])
+
+def __init__(self, solar_system, mass, position=(0,0), velocity=(0,0)):
+    super().__init__(solar_system, mass, position, velocity)
+    self.color(next(Planet.colors))
 
 # Solar System
 class SolarSystem:
@@ -58,4 +63,5 @@ class SolarSystem:
         body.move()
         body.draw()
       self.solar_system.update()
+    
 
