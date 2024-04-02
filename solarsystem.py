@@ -26,7 +26,7 @@ class SolarSystemBody(turtle.Turtle):
     self.dot(self.display_size)
 
   def move(self):
-    self.setx(self.xcor() + self.velocity[1])
+    self.setx(self.xcor() + self.velocity[0])
     self.sety(self.ycor() + self.velocity[1])
 
 class Sun(SolarSystemBody):
@@ -37,7 +37,7 @@ class Sun(SolarSystemBody):
 class Planet(SolarSystemBody):
   colors = itertools.cycle(["red", "green", "blue"])
 
-def __init__(self, solar_system, mass, position=(0,0), velocity=(0,0)):
+  def __init__(self, solar_system, mass, position=(0, 0), velocity=(0, 0)):
     super().__init__(solar_system, mass, position, velocity)
     self.color(next(Planet.colors))
 
