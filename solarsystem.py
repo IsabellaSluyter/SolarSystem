@@ -63,5 +63,20 @@ class SolarSystem:
         body.move()
         body.draw()
       self.solar_system.update()
+
+  @staticmethod
+  def accelerate_due_to_gravity(first: SolarSystemBody, second: SolarSystemBody):
+        force = first.mass * second.mass / first.distance(second) ** 2
+        angle = first.towards(second)
+        reverse = 1
+        for body in first, second:
+            acceleration = force / body.mass
+            acc_x = acceleration * math.cos(math.radians(angle))
+            acc_y = acceleration * math.sin(math.radians(angle))
+            body.velocity = (
+                body.velocity[0] + (reverse * acc_x),
+                body.velocity[1] + (reverse * acc_y),
+            )
+            reverse = -1
     
 
