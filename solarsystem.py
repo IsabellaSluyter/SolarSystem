@@ -56,6 +56,7 @@ class SolarSystem:
     self.bodies.append(body)
 
   def remove_body(self, body):
+    body.clear()
     self.bodies.remove(body)
 
   def update_all(self):
@@ -80,6 +81,8 @@ class SolarSystem:
       reverse = -1
 
   def check_collision(self, first, second):
+    if isinstance(first, Planet) and isinstance(second, Planet):
+      return
     if first.distance(second) < first.display_size/2 + second.display_size/2:
       for body in first, second:
         if isinstance(body, Planet):
