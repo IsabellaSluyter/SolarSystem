@@ -31,8 +31,8 @@ class SolarSystemBody(turtle.Turtle):
 
 class Sun(SolarSystemBody):
   def __init__(self, solar_system, mass, position=(0, 0), velocity=(0, 0)):
-        super().__init__(solar_system, mass, position, velocity)
-        self.color("yellow")
+    super().__init__(solar_system, mass, position, velocity)
+    self.color("yellow")
 
 class Planet(SolarSystemBody):
   colors = itertools.cycle(["red", "green", "blue"])
@@ -59,24 +59,30 @@ class SolarSystem:
     self.bodies.remove(body)
 
   def update_all(self):
-      for body in self.bodies:
-        body.move()
-        body.draw()
-      self.solar_system.update()
+    for body in self.bodies:
+      body.move()
+      body.draw()
+    self.solar_system.update()
 
   @staticmethod
   def accelerate_due_to_gravity(first: SolarSystemBody, second: SolarSystemBody):
-        force = first.mass * second.mass / first.distance(second) ** 2
-        angle = first.towards(second)
-        reverse = 1
-        for body in first, second:
-            acceleration = force / body.mass
-            acc_x = acceleration * math.cos(math.radians(angle))
-            acc_y = acceleration * math.sin(math.radians(angle))
-            body.velocity = (
-                body.velocity[0] + (reverse * acc_x),
-                body.velocity[1] + (reverse * acc_y),
-            )
-            reverse = -1
+    force = first.mass * second.mass / first.distance(second) ** 2
+    angle = first.towards(second)
+    reverse = 1
+      for body in first, second:
+        acceleration = force / body.mass
+          acc_x = acceleration * math.cos(math.radians(angle))
+          acc_y = acceleration * math.sin(math.radians(angle))
+          body.velocity = (
+            body.velocity[0] + (reverse * acc_x),
+            body.velocity[1] + (reverse * acc_y),
+          )
+          reverse = -1
+
+  def check_collision(self, first, second):
+    if first.distance(second) < first.display_size/2 + second.display_size/2:
+      for body in first, second:
+        if isinstance(body, Planet):
+          self.remove_body(body)
     
 
