@@ -1,6 +1,11 @@
+import matplotlib.pyplot as plt
+import numpy as np
 import itertools
 import math
 import turtle
+
+%matplotlib widget
+plt.rcParams['date.converter'] = 'concise'
 
 # Solar System Bodies
 class SolarSystemBody(turtle.Turtle):
