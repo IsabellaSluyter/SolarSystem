@@ -1,2 +1,2 @@
-pylance==5.1
-python==6.0
+pylance version 2024.5.1
+python version 2024.6.0
